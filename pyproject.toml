@@ -1,0 +1,11 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "changelog-env"
+version = "1.0.0"
+dependencies = ["openenv-core", "pydantic>=2"]
+
+[project.entry-points."openenv.envs"]
+changelog-env-v1 = "changelog_env:ChangelogEnv"

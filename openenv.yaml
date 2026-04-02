@@ -1,0 +1,25 @@
+id: changelog-env-v1
+name: ChangelogEnv
+version: 1.0.0
+description: >
+  Release notes generation environment. Agent classifies commits,
+  writes structured changelog bullets, and sets semver bump labels.
+tags: [openenv, changelog, nlp, software-engineering]
+tasks:
+  - id: task_easy
+    name: Single PR Summary
+    difficulty: easy
+  - id: task_medium
+    name: Sprint Release Mixed Signal
+    difficulty: medium
+  - id: task_hard
+    name: Multi-Version Audit
+    difficulty: hard
+action_space: structured
+observation_space: json
+reward_range: [-1.0, 1.0]
+api:
+  primary: ws /ws
+  reset: POST /reset
+  step: POST /step
+  state: GET /state
