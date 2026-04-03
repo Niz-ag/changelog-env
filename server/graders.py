@@ -68,11 +68,11 @@ def grade_easy(draft: Dict[str, List[str]], classified: Dict[str, str],
         if agent_label == expected_label:
             correct_classifications += 1
 
-    classification_score = correct_classifications / total_commits
+    classification_score = correct_classifications / max(total_commits, 1)
     breakdown['classification'] = classification_score * 0.40
     score += breakdown['classification']
 
-    if classification_score == 1.0:
+    if total_commits == 0 or classification_score == 1.0:
         feedback.append("All commits classified correctly")
     else:
         feedback.append(f"Classification accuracy: {classification_score:.0%}")
@@ -172,12 +172,13 @@ def grade_medium(draft: Dict[str, List[str]], classified: Dict[str, str],
 
     # 1. Classification accuracy (30% of score)
     correct_classifications = 0
+    total = len(gold_classifications)
     for commit_hash, expected_label in gold_classifications.items():
         agent_label = classified.get(commit_hash)
         if agent_label == expected_label:
             correct_classifications += 1
 
-    classification_score = correct_classifications / len(gold_classifications)
+    classification_score = correct_classifications / max(total, 1)
     breakdown['classification'] = classification_score * 0.30
     score += breakdown['classification']
 
@@ -304,7 +305,7 @@ def grade_hard(draft: Dict[str, List[str]], classified: Dict[str, str],
         elif version in ['v1.0.0', 'v1.1.0'] and version_bump in ['minor', 'patch']:
             semver_correct += 1
 
-    semver_score = semver_correct / len(expected_sections)
+    semver_score = semver_correct / max(len(expected_sections), 1)
     breakdown['semver'] = semver_score * 0.20
     score += breakdown['semver']
 
@@ -315,7 +316,7 @@ def grade_hard(draft: Dict[str, List[str]], classified: Dict[str, str],
 
     # 5. Coverage score (25% of score)
     # Check if commits are covered in the output
-    coverage_score = len(classified) / len(gold_classifications)
+    coverage_score = len(classified) / max(len(gold_classifications), 1)
     breakdown['coverage'] = min(coverage_score, 1.0) * 0.25
     score += breakdown['coverage']
 

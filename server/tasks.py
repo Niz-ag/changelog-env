@@ -1,7 +1,11 @@
 """Task definitions for ChangelogEnv - commit datasets for all 3 tasks."""
 
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from typing import List, Dict, Any
-from ..models import CommitRecord
+from models import CommitRecord
 
 
 def load_task(task_id: str, seed: int = None) -> Dict[str, Any]:

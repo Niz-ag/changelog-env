@@ -6,9 +6,13 @@ import uuid
 from datetime import datetime
 from typing import Optional
 
-# Handle both package and direct imports
-if __name__ == '__main__' or 'pytest' in sys.modules:
-    sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Setup path for imports
+_base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if _base_dir not in sys.path:
+    sys.path.insert(0, _base_dir)
+_server_dir = os.path.join(_base_dir, 'server')
+if _server_dir not in sys.path:
+    sys.path.insert(0, _server_dir)
 
 from openenv.core.env_server import Environment
 
