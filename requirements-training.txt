@@ -1,0 +1,10 @@
+# GRPO Training Requirements (Module 5)
+# Install with: pip install -r requirements-training.txt
+
+"trl>=0.17.0"
+transformers
+datasets
+accelerate
+vllm
+trackio
+torch
