@@ -94,6 +94,10 @@ class ChangelogEnvironment(Environment):
         Returns:
             ChangelogObservation with updated state
         """
+        # Check if environment was reset
+        if self._state is None:
+            raise RuntimeError("Environment must be reset before calling step()")
+
         # Increment step count
         self._state.step_count += 1
 
@@ -118,6 +122,8 @@ class ChangelogEnvironment(Environment):
                 self._state.task_id, self._task['gold'], self._state.step_count
             )
             self._score += terminal_r
+            # Use terminal reward in observation, not step reward
+            reward = terminal_r
             msg = f"Auto-submitted at max steps. Final score: {self._score:.2f}"
 
         return self._build_observation(done=done, reward=reward, result=msg)

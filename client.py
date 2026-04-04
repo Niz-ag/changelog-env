@@ -5,7 +5,7 @@ from typing import Optional
 from openenv.core.env_client import EnvClient
 from openenv.core.client_types import StepResult
 
-from .models import ChangelogAction, ChangelogObservation, ChangelogState
+from models import ChangelogAction, ChangelogObservation, ChangelogState
 
 
 class ChangelogEnv(EnvClient[ChangelogAction, ChangelogObservation, ChangelogState]):
@@ -13,7 +13,7 @@ class ChangelogEnv(EnvClient[ChangelogAction, ChangelogObservation, ChangelogSta
     Client for interacting with the ChangelogEnv environment.
 
     Usage:
-        with ChangelogEnv(base_url='https://YOUR_USERNAME-changelog-env.hf.space').sync() as env:
+        with ChangelogEnv(base_url='https://niz-ag-changelog-env.hf.space').sync() as env:
             result = env.reset(task_id='task_easy')
             result = env.step(ChangelogAction(action_type='classify_commit', ...))
             state = env.state()
