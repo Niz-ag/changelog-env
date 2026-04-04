@@ -1,8 +1,11 @@
-datasets==4.8.4
-openai==2.30.0
-openenv==0.1.13
-pydantic==2.12.5
+# Core dependencies
+openenv-core==0.2.2
+fastapi>=0.111.0
+uvicorn[standard]>=0.30.1
+pydantic>=2.7.1
 pytest==9.0.2
 torch==2.11.0
 transformers==5.5.0
 trl==1.0.0
+openai>=1.30.1
+accelerate vllm trackio torch
