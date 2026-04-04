@@ -37,7 +37,7 @@ class ChangelogEnvironment(Environment):
     SUPPORTS_CONCURRENT_SESSIONS = True
 
     def __init__(self):
-        self._state: Optional[ChangelogState] = None
+        self._state: ChangelogState = ChangelogState()
         self._task: Optional[dict] = None
         self._draft: dict = {}
         self._classified: dict = {}
