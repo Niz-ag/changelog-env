@@ -129,7 +129,7 @@ def terminal_reward(draft: Dict[str, List[str]], classified: Dict[str, str],
         grading_result.feedback.append("Early submit penalty: -0.20")
 
     # Final reward
-    final_reward = base_score - early_submit_penalty
+    final_reward = max(0.01, min(0.99, base_score - early_submit_penalty))
 
     return final_reward, grading_result
 

@@ -144,7 +144,7 @@ def grade_easy(draft: Dict[str, List[str]], classified: Dict[str, str],
         feedback.append("Format issues detected")
 
     return GradingResult(
-        score=max(0.0, min(1.0, score)),
+        score=max(0.01, min(0.99, score)),
         breakdown=breakdown,
         feedback=feedback
     )
@@ -240,7 +240,7 @@ def grade_medium(draft: Dict[str, List[str]], classified: Dict[str, str],
     score += breakdown['format']
 
     return GradingResult(
-        score=max(0.0, min(1.0, score)),
+        score=max(0.01, min(0.99, score)),
         breakdown=breakdown,
         feedback=feedback
     )
@@ -321,7 +321,7 @@ def grade_hard(draft: Dict[str, List[str]], classified: Dict[str, str],
     score += breakdown['coverage']
 
     return GradingResult(
-        score=max(0.0, min(1.0, score)),
+        score=max(0.01, min(0.99, score)),
         breakdown=breakdown,
         feedback=feedback
     )

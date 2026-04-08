@@ -132,7 +132,7 @@ def run_episode(task_id: str, client: OpenAI) -> float:
                 if done:
                     break
 
-            score = min(max(observation.score_so_far, 0.0), 1.0)
+            score = min(max(observation.score_so_far, 0.01), 0.99)
             success = score >= SUCCESS_SCORE_THRESHOLD
 
     except Exception as e:
