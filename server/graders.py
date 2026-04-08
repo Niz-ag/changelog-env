@@ -55,8 +55,8 @@ def grade_easy(draft: Dict[str, List[str]], classified: Dict[str, str],
     breakdown = {}
     score = 0.0
 
-    gold_classifications = gold['classifications']
-    expected_version = gold['version_bump']
+    gold_classifications = gold.get('classifications', {})
+    expected_version = gold.get('version_bump', 'minor')
     expected_bullets = gold.get('expected_bullets', {})
 
     # 1. Classification accuracy (40% of score)
@@ -165,8 +165,8 @@ def grade_medium(draft: Dict[str, List[str]], classified: Dict[str, str],
     breakdown = {}
     score = 0.0
 
-    gold_classifications = gold['classifications']
-    expected_version = gold['version_bump']
+    gold_classifications = gold.get('classifications', {})
+    expected_version = gold.get('version_bump', 'major')
     breaking_commits = gold.get('breaking_commits', [])
     expected_bullets = gold.get('expected_bullets', {})
 
@@ -261,6 +261,7 @@ def grade_hard(draft: Dict[str, List[str]], classified: Dict[str, str],
     breakdown = {}
     score = 0.0
 
+    gold_classifications = gold.get('classifications', {})
     version_boundaries = gold.get('version_boundaries', {})
     expected_sections = gold.get('expected_sections', {})
 
@@ -279,8 +280,6 @@ def grade_hard(draft: Dict[str, List[str]], classified: Dict[str, str],
     feedback.append(f"Version sections found: {version_sections_found}/3")
 
     # 2. Boundary correctness (25% of score)
-    # Check if commits are grouped into correct version boundaries
-    gold_classifications = gold['classifications']
     correct_boundaries = 0
     total_boundary_checks = 0
 

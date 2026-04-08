@@ -384,7 +384,7 @@ def get_hard_task(seed: int = None) -> Dict[str, Any]:
             message=data[1],
             author=data[2],
             timestamp=data[3] + 'T10:00:00Z',
-            files_changed=[data[4]],
+            files_changed=data[4],
             diff_summary=data[5],
         ))
 
